@@ -12,26 +12,33 @@ El que logre completar 100 puntos gana! :D
 */
 
 var turno = 1;
+var intervalo;
+var ban = 0;
 
 document.getElementById("newgame").addEventListener("click", () => {
    setScore0(0);
    setScore1(0);
    setCurrent0(0);
    setCurrent1(0);
-   if (turno === 1) {
-        changeActive(2);
-   } else {
-       changeActive(1);
-   }
+   changeActive(1);
+//   if (turno === 1) {
+//        changeActive(2);
+//   } else {
+//       changeActive(1);
+//   }
    
 });
+
+
+
 document.getElementsByClassName("btn-roll")[0].addEventListener("click", () => {
     let ran = random();
-    console.log(ran);
     let ran1 = random1();
-    console.log(ran1);
     while (Number.isNaN(ran)) {
         ran = random();
+    }
+    while (Number.isNaN(ran1)) {
+        ran1 = random1();
     }
     document.getElementsByClassName("dice")[0].src = "dice-" + ran + ".png";
     document.getElementsByClassName("dice")[0].alt = "dice-" + ran;
@@ -89,7 +96,24 @@ document.getElementsByClassName("btn-hold")[0].addEventListener("click", () => {
     }
 });
 
+function vsCPU () {
+    return setInterval('intFun()', 1127);
+}
+
+function intFun () {
+    document.getElementsByClassName("btn-roll")[0].click();
+    ban++;
+    if(getCurrent1() > 15) {
+        window.clearInterval(intervalo);
+        document.getElementsByClassName("btn-hold")[0].click();
+        ban = 0;
+    }
+}
+
+
 function changeActive (a) {
+    if (a === 1)
+        window.clearInterval(intervalo);
     document.getElementsByClassName("player-0-panel")[0].className = document.getElementsByClassName("player-0-panel")[0].className.replace("active", "");
     document.getElementsByClassName("player-1-panel")[0].className = document.getElementsByClassName("player-1-panel")[0].className.replace("active", "");
     switch (a) {
@@ -100,6 +124,7 @@ function changeActive (a) {
         case 2:
             document.getElementsByClassName("player-1-panel")[0].className += " active";
             turno = a;
+            intervalo = vsCPU();
             break;
         default : 
             console.log("se paso un valor no valido");
