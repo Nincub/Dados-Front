@@ -11,6 +11,10 @@ se es sumado a su puntuación global, depues de esto, es el turno del siguiente 
 El que logre completar 100 puntos gana! :D
 */
 
+window.onload = () => {
+    document.getElementById("newgame").click();
+};
+
 var turno = 1;
 var intervalo;
 var ban = 0;
@@ -97,7 +101,7 @@ document.getElementsByClassName("btn-hold")[0].addEventListener("click", () => {
 });
 
 function vsCPU () {
-    return setInterval('intFun()', 1127);
+    return setInterval('intFun()', 1123);
 }
 
 function intFun () {
