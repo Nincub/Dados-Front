@@ -18,7 +18,12 @@ document.getElementById("newgame").addEventListener("click", function () {
    setScore1(0);
    setCurrent0(0);
    setCurrent1(0);
-   changeActive(1);
+   if (turno === 1) {
+        changeActive(2);
+   } else {
+       changeActive(1);
+   }
+   
 });
 document.getElementsByClassName("btn-roll")[0].addEventListener("click", function () {
     let ran = random();
