@@ -13,7 +13,7 @@ El que logre completar 100 puntos gana! :D
 
 var turno;
 
-document.getElementById("newgame").addEventListener("click", function () {
+document.getElementById("newgame").addEventListener("click", () => {
    setScore0(0);
    setScore1(0);
    setCurrent0(0);
@@ -25,7 +25,7 @@ document.getElementById("newgame").addEventListener("click", function () {
    }
    
 });
-document.getElementsByClassName("btn-roll")[0].addEventListener("click", function () {
+document.getElementsByClassName("btn-roll")[0].addEventListener("click", () => {
     let ran = random();
     while (Number.isNaN(ran)) {
         ran = random();
@@ -52,7 +52,7 @@ document.getElementsByClassName("btn-roll")[0].addEventListener("click", functio
     }
 });
 
-document.getElementsByClassName("btn-hold")[0].addEventListener("click", function () {
+document.getElementsByClassName("btn-hold")[0].addEventListener("click", () => {
     if (turno === 1) {
         setScore0(getScore0() + getCurrent0());
         setCurrent0(0);
