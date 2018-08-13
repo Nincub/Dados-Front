@@ -11,7 +11,7 @@ se es sumado a su puntuación global, depues de esto, es el turno del siguiente 
 El que logre completar 100 puntos gana! :D
 */
 
-var turno;
+var turno = 1;
 
 document.getElementById("newgame").addEventListener("click", () => {
    setScore0(0);
