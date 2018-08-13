@@ -40,21 +40,19 @@ document.getElementsByClassName("btn-roll")[0].addEventListener("click", () => {
     if (ran !== 1 && ran1 !==1) {
         if (ran === 6 && ran1 === 6) {
             if (turno === 1) {
-                ran += getCurrent0();
-                setCurrent0(ran);
+                setScore0(0);
+                setCurrent0(0);
+                changeActive(2);
             } else {
-                ran += getCurrent1();
-                setCurrent1(ran);
+                setScore1(0);
+                setCurrent1(0);
+                changeActive(1);
             }
         } else {
             if (turno === 1) {
-                setCurrent0(0);
-                setScore0(0);
-                changeActive(2);
+                setCurrent0(getCurrent0() + ran + ran1); 
             } else {
-                setCurrent1(0);
-                setScore1(0);
-                changeActive(1);
+                setCurrent1(getCurrent1() + ran + ran1);
             }
         }
     } else {
