@@ -27,18 +27,35 @@ document.getElementById("newgame").addEventListener("click", () => {
 });
 document.getElementsByClassName("btn-roll")[0].addEventListener("click", () => {
     let ran = random();
+    console.log(ran);
+    let ran1 = random1();
+    console.log(ran1);
     while (Number.isNaN(ran)) {
         ran = random();
     }
     document.getElementsByClassName("dice")[0].src = "dice-" + ran + ".png";
     document.getElementsByClassName("dice")[0].alt = "dice-" + ran;
-    if (ran !== 1) {
-        if (turno === 1) {
-            ran += getCurrent0();
-            setCurrent0(ran);
+    document.getElementsByClassName("dice1")[0].src = "dice-" + ran1 + ".png";
+    document.getElementsByClassName("dice1")[0].alt = "dice-" + ran1;
+    if (ran !== 1 && ran1 !==1) {
+        if (ran === 6 && ran1 === 6) {
+            if (turno === 1) {
+                ran += getCurrent0();
+                setCurrent0(ran);
+            } else {
+                ran += getCurrent1();
+                setCurrent1(ran);
+            }
         } else {
-            ran += getCurrent1();
-            setCurrent1(ran);
+            if (turno === 1) {
+                setCurrent0(0);
+                setScore0(0);
+                changeActive(2);
+            } else {
+                setCurrent1(0);
+                setScore1(0);
+                changeActive(1);
+            }
         }
     } else {
         if (turno === 1) {
@@ -129,6 +146,16 @@ function random () {
     let mili =  parseFloat(date.getMilliseconds());
     mili = 1.0 / mili;
     mili *= 10000;
+    mili = parseInt(mili);
+    mili %= 6;
+    return mili + 1;
+}
+
+function random1 () {
+    let date = new Date();   
+    let mili =  parseFloat(date.getMilliseconds());
+    mili = 1.0 / (mili * mili);
+    mili *= 1000000;
     mili = parseInt(mili);
     mili %= 6;
     return mili + 1;
