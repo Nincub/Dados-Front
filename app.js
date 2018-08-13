@@ -40,11 +40,11 @@ document.getElementsByClassName("btn-roll")[0].addEventListener("click", () => {
     if (ran !== 1 && ran1 !==1) {
         if (ran === 6 && ran1 === 6) {
             if (turno === 1) {
-                setScore0(0);
+                getScore0() <= 0? setScore0(getScore0() - 50) : setScore0(0);
                 setCurrent0(0);
                 changeActive(2);
             } else {
-                setScore1(0);
+                getScore1() <= 0? setScore1(getScore1() - 50) : setScore1(0);
                 setCurrent1(0);
                 changeActive(1);
             }
