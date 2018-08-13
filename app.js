@@ -27,6 +27,9 @@ document.getElementById("newgame").addEventListener("click", function () {
 });
 document.getElementsByClassName("btn-roll")[0].addEventListener("click", function () {
     let ran = random();
+    while (Number.isNaN(ran)) {
+        ran = random();
+    }
     document.getElementsByClassName("dice")[0].src = "dice-" + ran + ".png";
     document.getElementsByClassName("dice")[0].alt = "dice-" + ran;
     if (ran !== 1) {
@@ -54,10 +57,20 @@ document.getElementsByClassName("btn-hold")[0].addEventListener("click", functio
         setScore0(getScore0() + getCurrent0());
         setCurrent0(0);
         changeActive(2);
+        if (getScore0() > 99) {
+            alert("Player 1 winn");
+            document.getElementById("newgame").click();
+        }
+            
     } else {
         setScore1(getScore1() + getCurrent1());
         setCurrent1(0);
         changeActive(1);
+        if (getScore1() > 99) {
+            alert("Player 2 winns");
+            document.getElementById("newgame").click();
+        }
+            
     }
 });
 
